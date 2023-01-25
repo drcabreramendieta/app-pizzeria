@@ -1,0 +1,3 @@
+pequeña	4
+mediana	8
+grande	12

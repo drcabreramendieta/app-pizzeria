@@ -5,8 +5,10 @@
  */
 package models;
 
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.beans.PropertyChangeSupport;
 
 /**
  *
@@ -17,10 +19,15 @@ public class Order {
     private ArrayList<Extra> extras;
     private Client client;
     private double cost;
+    private int state;
+    private PropertyChangeSupport pcs;
 
     public Order() {
         pizzas = new ArrayList<>();
         extras = new ArrayList<>();
+        state = 0;
+        cost = 0;
+        pcs = new PropertyChangeSupport(this);
     }
     
     public void addPizza(int size, String pizzaIngredient) throws IOException{
@@ -41,7 +48,7 @@ public class Order {
     }
     
     public void addClient(String name){
-        client = new Client(name);
+        this.client = new Client(name);
     }
     
     private void computeCost(){
@@ -58,6 +65,18 @@ public class Order {
     public double getCost() {
         return cost;
     }
+
+    public void setState(int state) {
+        int old = this.state;
+        this.state = state;
+        pcs.firePropertyChange("state", old, state);
+    }
     
+    public void addListener(PropertyChangeListener l){
+        pcs.addPropertyChangeListener(l);
+    }
     
+    public void removeListener(PropertyChangeListener l){
+        pcs.removePropertyChangeListener(l);
+    }
 }

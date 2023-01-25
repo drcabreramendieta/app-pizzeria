@@ -5,17 +5,32 @@
  */
 package controllers;
 import java.io.IOException;
-import models.Order;
+import models.ItemsModel;
+import models.PreOrderModel;
+import models.OrdersModel;
+
+import views.RegisterOrderWIndow;
 /**
  *
  * @author hola
  */
 public class Principal {
     public static void main(String[] args) throws IOException{
-        Order order = new Order();
-        order.addPizza(12, "mushroom");
-        order.addPizza(20, "peperoni");
-        order.addExtra("papita");
-        System.out.println(order.getCost());
+        ItemsModel pizzaType = new ItemsModel("slide.txt");
+        ItemsModel pizzaSize = new ItemsModel("size.txt");
+        ItemsModel pizzaBorder = new ItemsModel("border.txt");
+        ItemsModel extras = new ItemsModel("extra.txt");
+        
+        PreOrderModel pom = new PreOrderModel();
+        
+        OrdersModel iom = new OrdersModel();
+        OrdersModel ipom = new OrdersModel();
+        OrdersModel fom = new OrdersModel();
+        
+        RegisterOrderWIndow v1 = new RegisterOrderWIndow();
+        v1.setPizzaModels(pizzaType, pizzaSize, pizzaBorder, extras);
+        v1.setPreOrderModel(pom);
+        v1.setOrdersModels(iom, ipom, fom);
+        v1.setVisible(true);
     }
 }
