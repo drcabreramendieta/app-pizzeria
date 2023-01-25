@@ -1,0 +1,4 @@
+mushroom	1.5
+salami	1.8
+hawayana	1.2
+peperoni	1.65

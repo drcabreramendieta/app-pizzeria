@@ -1,0 +1,3 @@
+papita	2.5
+coca-cola	1.10
+pepsi	1.20

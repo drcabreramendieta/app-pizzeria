@@ -1,0 +1,2 @@
+queso	0.5
+salchicha	1.5
