@@ -17,7 +17,7 @@ import javax.swing.AbstractListModel;
  * @author hola
  */
 public class ItemsModel extends AbstractListModel{
-    private ArrayList<String> items;
+    private ArrayList<Item> items;
     private String path;
 
     public ItemsModel(String path) throws FileNotFoundException, IOException {
@@ -28,7 +28,8 @@ public class ItemsModel extends AbstractListModel{
         String line = br.readLine();
         while(line != null){
             String[]columns = line.split("\t");
-            items.add(columns[0]);
+            Item item = new Item(columns[0], Double.parseDouble(columns[1]));
+            items.add(item);
             line = br.readLine();
         }
     }

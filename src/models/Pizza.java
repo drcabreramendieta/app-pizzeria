@@ -55,5 +55,7 @@ public class Pizza {
         return cost;
     }
     
-    
+    public String toString(){
+        return "Pizza:"+slides.get(0).getIngredient();
+    }
 }

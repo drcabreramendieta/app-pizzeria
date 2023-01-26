@@ -31,6 +31,10 @@ public class Principal {
         v1.setPizzaModels(pizzaType, pizzaSize, pizzaBorder, extras);
         v1.setPreOrderModel(pom);
         v1.setOrdersModels(iom, ipom, fom);
+        
+        AddPizzaController apc = new AddPizzaController(v1,pom);
+        v1.addPizzaController(apc);
+        
         v1.setVisible(true);
     }
 }

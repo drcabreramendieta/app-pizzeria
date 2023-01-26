@@ -43,5 +43,7 @@ public abstract class PizzaElement {
         return cost;
     }
     
-    
+    public String getIngredient(){
+        return ingredient;
+    }
 }

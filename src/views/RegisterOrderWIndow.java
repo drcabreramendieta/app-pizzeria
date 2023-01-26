@@ -5,7 +5,9 @@
  */
 package views;
 
+import java.awt.event.ActionListener;
 import javax.swing.ListModel;
+import models.Item;
 
 /**
  *
@@ -40,7 +42,7 @@ public class RegisterOrderWIndow extends javax.swing.JFrame {
         preOrderList = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         extrasList = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        addPizzaButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -56,27 +58,12 @@ public class RegisterOrderWIndow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         typeList.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo"));
-        typeList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(typeList);
 
         sizeList.setBorder(javax.swing.BorderFactory.createTitledBorder("Tamaño"));
-        sizeList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(sizeList);
 
         borderList.setBorder(javax.swing.BorderFactory.createTitledBorder("Borde"));
-        borderList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(borderList);
 
         preOrderList.setBorder(javax.swing.BorderFactory.createTitledBorder("Pre-orden"));
@@ -88,14 +75,9 @@ public class RegisterOrderWIndow extends javax.swing.JFrame {
         jScrollPane4.setViewportView(preOrderList);
 
         extrasList.setBorder(javax.swing.BorderFactory.createTitledBorder("Extras"));
-        extrasList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane5.setViewportView(extrasList);
 
-        jButton1.setText("Agregar pizza");
+        addPizzaButton.setText("Agregar pizza");
 
         jButton2.setText("Agregar extra");
 
@@ -113,7 +95,7 @@ public class RegisterOrderWIndow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addPizzaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(35, 35, 35))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,7 +132,7 @@ public class RegisterOrderWIndow extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(addPizzaButton)
                             .addComponent(jButton2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,14 +267,26 @@ public class RegisterOrderWIndow extends javax.swing.JFrame {
         inPreparationList.setModel(ipom);
         finalizedList.setModel(fom);
     }
+    
+    public void addPizzaController(ActionListener al){
+        addPizzaButton.addActionListener(al);
+    }
+    
+    public Item[] getPizza(){
+        Item[] pizza = new Item[3];
+        pizza[0] = typeList.getSelectedValue();
+        pizza[1] = sizeList.getSelectedValue();
+        pizza[2] = borderList.getSelectedValue();
+        return pizza;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> borderList;
-    private javax.swing.JList<String> extrasList;
+    private javax.swing.JButton addPizzaButton;
+    private javax.swing.JList<Item> borderList;
+    private javax.swing.JList<Item> extrasList;
     private javax.swing.JList<String> finalizedList;
     private javax.swing.JList<String> inPreparationList;
     private javax.swing.JList<String> initializedList;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -308,7 +302,7 @@ public class RegisterOrderWIndow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JList<String> preOrderList;
-    private javax.swing.JList<String> sizeList;
-    private javax.swing.JList<String> typeList;
+    private javax.swing.JList<Item> sizeList;
+    private javax.swing.JList<Item> typeList;
     // End of variables declaration//GEN-END:variables
 }
