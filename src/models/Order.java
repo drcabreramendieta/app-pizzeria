@@ -30,20 +30,12 @@ public class Order {
         pcs = new PropertyChangeSupport(this);
     }
     
-    public void addPizza(int size, String pizzaIngredient) throws IOException{
-        pizzas.add(new Pizza(size, pizzaIngredient));
+    public void addPizza(Pizza pizza) throws IOException{
+        pizzas.add(pizza);
     }
     
-    public void addPizza(int size, 
-            String pizzaIngredient, 
-            String borderIngredient) throws IOException{
-        pizzas.add(new Pizza(size, pizzaIngredient, 
-                borderIngredient));
-        computeCost();
-    }
-    
-    public void addExtra(String name) throws IOException{
-        extras.add(new Extra(name));
+    public void addExtra(Extra extra) throws IOException{
+        extras.add(extra);
         computeCost();
     }
     
@@ -78,5 +70,21 @@ public class Order {
     
     public void removeListener(PropertyChangeListener l){
         pcs.removePropertyChangeListener(l);
+    }
+    
+    @Override
+    public String toString(){
+        return client.getName();
+    }
+    
+    public String forCooking(){
+        String text = "";
+        for(Pizza pizza:pizzas){
+            text += pizza.toString();
+        }
+        for(Extra extra:extras){
+            text += extra.toString();
+        }
+        return text;
     }
 }

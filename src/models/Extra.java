@@ -17,4 +17,8 @@ public class Extra extends PizzaElement{
         super(ingredient, "extra.txt");
     }
     
+    @Override
+    public String toString(){
+        return "Extra: "+this.getIngredient();
+    }
 }

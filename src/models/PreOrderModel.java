@@ -44,6 +44,8 @@ public class PreOrderModel extends AbstractListModel{
     
     public void addExtra(Item extra) throws IOException{
         Extra e = new Extra(extra.getName());
+        int size = items.size();
         items.add(e);
+        fireIntervalAdded(this, size,size);
     }
 }

@@ -55,7 +55,8 @@ public class Pizza {
         return cost;
     }
     
+    @Override
     public String toString(){
-        return "Pizza:"+slides.get(0).getIngredient();
+        return "Pizza: "+slides.get(0).getIngredient();
     }
 }

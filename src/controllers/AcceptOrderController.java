@@ -10,35 +10,32 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import views.RegisterOrderWIndow;
-import models.PreOrderModel;
 
+import views.RegisterOrderWIndow;
+import models.OrdersModel;
+import models.PreOrderModel;
 /**
  *
  * @author hola
  */
-public class AddPizzaController implements ActionListener{
+public class AcceptOrderController implements ActionListener{
     RegisterOrderWIndow v;
-    PreOrderModel m;
+    OrdersModel om;
+    PreOrderModel pom;
 
-    public AddPizzaController(RegisterOrderWIndow v, PreOrderModel m) {
+    public AcceptOrderController(RegisterOrderWIndow v, OrdersModel om, PreOrderModel pom) {
         this.v = v;
-        this.m = m;
+        this.om = om;
+        this.pom = pom;
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
         try {
-            if(ae.getActionCommand().equals("Agregar pizza")){
-                m.addPizza(v.getPizza());
-            }
-            else{
-                m.addExtra(v.getExtra());
-            }
+            om.addOrder(pom,v.getClient());
         } catch (IOException ex) {
-            Logger.getLogger(AddPizzaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcceptOrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
 }

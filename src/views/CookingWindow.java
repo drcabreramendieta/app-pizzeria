@@ -5,6 +5,10 @@
  */
 package views;
 
+import java.awt.event.ActionListener;
+import javax.swing.ListModel;
+import models.Order;
+
 /**
  *
  * @author hola
@@ -16,6 +20,8 @@ public class CookingWindow extends javax.swing.JFrame {
      */
     public CookingWindow() {
         initComponents();
+        InitializedOrderRenderedCW r = new InitializedOrderRenderedCW();
+        ioList.setCellRenderer(r);
     }
 
     /**
@@ -29,39 +35,34 @@ public class CookingWindow extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jList6 = new javax.swing.JList<>();
+        ioList = new javax.swing.JList<>();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jList7 = new javax.swing.JList<>();
+        ipList = new javax.swing.JList<>();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jList8 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        foList = new javax.swing.JList<>();
+        ipButton = new javax.swing.JButton();
+        opButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList6.setBorder(javax.swing.BorderFactory.createTitledBorder("Órdenes iniciadas"));
-        jList6.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane6.setViewportView(jList6);
+        ioList.setBorder(javax.swing.BorderFactory.createTitledBorder("Órdenes iniciadas"));
+        jScrollPane6.setViewportView(ioList);
 
-        jList7.setBorder(javax.swing.BorderFactory.createTitledBorder("En preparación"));
-        jList7.setModel(new javax.swing.AbstractListModel<String>() {
+        ipList.setBorder(javax.swing.BorderFactory.createTitledBorder("En preparación"));
+        ipList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane7.setViewportView(jList7);
+        jScrollPane7.setViewportView(ipList);
 
-        jList8.setBorder(javax.swing.BorderFactory.createTitledBorder("Finalizadas"));
-        jList8.setModel(new javax.swing.AbstractListModel<String>() {
+        foList.setBorder(javax.swing.BorderFactory.createTitledBorder("Finalizadas"));
+        foList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane8.setViewportView(jList8);
+        jScrollPane8.setViewportView(foList);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -87,9 +88,9 @@ public class CookingWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Iniciar preparación");
+        ipButton.setText("Iniciar preparación");
 
-        jButton2.setText("Orden preparada");
+        opButton.setText("Orden preparada");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,9 +98,9 @@ public class CookingWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(200, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -112,8 +113,8 @@ public class CookingWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(240, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(ipButton)
+                    .addComponent(opButton))
                 .addGap(37, 37, 37))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -159,16 +160,34 @@ public class CookingWindow extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void setListModels(ListModel io, ListModel ip, ListModel fo){
+        ioList.setModel(io);
+        ipList.setModel(ip);
+        foList.setModel(fo);
+    }
+    
+    public void setInPreparationController(ActionListener al){
+        ipButton.addActionListener(al);
+    }
+    
+    public void setFinalizedController(ActionListener al){
+        opButton.addActionListener(al);
+    }
+    
+    public int getSelectedItem(){
+        return ipList.getSelectedIndex();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JList<String> jList6;
-    private javax.swing.JList<String> jList7;
-    private javax.swing.JList<String> jList8;
+    private javax.swing.JList<String> foList;
+    private javax.swing.JList<Order> ioList;
+    private javax.swing.JButton ipButton;
+    private javax.swing.JList<String> ipList;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JButton opButton;
     // End of variables declaration//GEN-END:variables
 }
